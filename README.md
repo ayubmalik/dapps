@@ -1,2 +1,3 @@
 # dapps
-Dapps mono repository
+
+Dapps mono repository for Ethereum.
