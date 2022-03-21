@@ -61,6 +61,7 @@ contract MLKToken is Token {
 
     constructor() {
         owner = msg.sender;
+        balances[owner] = 70000000000000000000;
     }
 
     function balanceOf(address _address)
