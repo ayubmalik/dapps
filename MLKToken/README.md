@@ -18,6 +18,8 @@ const accounts = await web3.eth.getAccounts();
 const owner = accounts[0];
 const receiver = accounts[1];
 
+mlkToken.transfer(receiver, "1000000000000000000"); // use string for amount
+
 
 ```
 
