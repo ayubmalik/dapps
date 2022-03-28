@@ -6,6 +6,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpClient.Redirect;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.Base64;
 
@@ -39,8 +40,8 @@ public class EthSubscriber {
                 .build();
 
         try {
-            var response = client.send(request, BodyHandlers.ofString());
-            log.info("got response: {}", response);
+            var response = client.send(request, BodyHandlers.ofString(StandardCharsets.UTF_8));
+            log.info("got response: {}", response.body());
         } catch (Exception e) {
             log.error("error", e);
         }
