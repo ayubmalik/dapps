@@ -107,3 +107,7 @@ dist
 # solidity/truffle
 **/build/contracts
 **/bin/**/*.class
+
+**/build/
+**/.vscode/
+**/.gradle
