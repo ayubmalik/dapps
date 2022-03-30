@@ -2,6 +2,7 @@ package ayubmalik.web3.alchemy;
 
 import java.io.IOException;
 import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.http.HttpService;
 
 public class AlchemyClient {
@@ -15,7 +16,7 @@ public class AlchemyClient {
 
     public Long getLatestBlockNumber() {
         try {
-            var block = web3.ethGetBlockByHash("latest", true).send().getBlock();
+            var block = web3.ethGetBlockByNumber(DefaultBlockParameterName.LATEST, false).send().getBlock();
             return block.getNumber().longValue();
         } catch (IOException e) {
             throw new RuntimeException(e);
