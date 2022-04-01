@@ -10,9 +10,11 @@ repositories {
 dependencies {
     implementation 'org.web3j:core:4.8.7'
     implementation 'ch.qos.logback:logback-classic:1.2.11'
+    implementation 'org.rocksdb:rocksdbjni:6.5.2'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
+    testImplementation 'org.assertj:assertj-core:3.22.0'
 }
 
 test {
@@ -25,17 +27,15 @@ java {
     }
 }
 
-jar {
-   duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+// jar {
+//    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
-    manifest {
-        attributes "Main-Class": "ayubmalik.web3.alchemy.Application"
-    }
+//     manifest {
+//         attributes "Main-Class": "ayubmalik.web3.alchemy.Application"
+//     }
 
-    doFirst {
-        from {
-            configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-        }
-    }
-    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
-}
+//     from {
+//         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+//     }
+//     exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+// }
