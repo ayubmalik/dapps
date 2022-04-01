@@ -5,7 +5,9 @@ import org.web3j.protocol.core.methods.response.Transaction;
 
 public interface TxLog {
 
-  Long lastBlockNumber();
+  Long getLatestBlockNumber();
+
+  void putLatestBlockNumber(Long blockNumber);
 
   List<Transaction> transactions();
 }

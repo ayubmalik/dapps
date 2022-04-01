@@ -1,5 +1,6 @@
 package ayubmalik.web3;
 
+import com.google.common.primitives.Longs;
 import org.rocksdb.Options;
 import org.rocksdb.RocksDB;
 import org.rocksdb.RocksDBException;
@@ -14,28 +15,44 @@ public class RocksTxLog implements TxLog {
         RocksDB.loadLibrary();
     }
 
+    private final byte[] latestBlockNumber = "latestBlockNumber".getBytes();
+
     private final RocksDB db;
 
-    public RocksTxLog(Path path) {
-        this.db = openRocksDB(path);
+    RocksTxLog(Path path) {
+        db = openRocksDB(path);
     }
 
-    private RocksDB openRocksDB(Path path) {
+    @Override
+    public Long getLatestBlockNumber() {
         try {
-         return RocksDB.open(new Options().setCreateIfMissing(true), path.toString());
+            var blockNum = db.get(latestBlockNumber);
+            return Longs.fromByteArray(blockNum);
         } catch (RocksDBException e) {
             throw new AppException(e);
         }
     }
 
     @Override
-    public Long lastBlockNumber() {
-        return null;
+    public void putLatestBlockNumber(Long blockNumber) {
+        try {
+            db.put(latestBlockNumber, Longs.toByteArray(blockNumber));
+        } catch (RocksDBException e) {
+            throw new AppException(e);
+        }
     }
 
     @Override
     public List<Transaction> transactions() {
         return null;
+    }
+
+    private RocksDB openRocksDB(Path path) {
+        try {
+            return RocksDB.open(new Options().setCreateIfMissing(true), path.toString());
+        } catch (RocksDBException e) {
+            throw new AppException(e);
+        }
     }
 
 }

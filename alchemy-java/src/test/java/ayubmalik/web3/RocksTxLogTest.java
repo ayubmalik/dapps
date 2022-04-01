@@ -1,6 +1,5 @@
 package ayubmalik.web3;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -16,12 +15,10 @@ class RocksTxLogTest {
     @Test
     void lastBlockNumber() {
         var txLog = new RocksTxLog(tempDir);
-        var blockNum = txLog.lastBlockNumber();
-        assertThat(blockNum).isEqualTo(1);
-    }
 
-    @Test
-    void allTransactions() {
-        System.out.println(tempDir);
+        txLog.putLatestBlockNumber(321L);
+        var blockNum = txLog.getLatestBlockNumber();
+        assertThat(blockNum).isEqualTo(321);
     }
+    
 }
