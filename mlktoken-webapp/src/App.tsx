@@ -1,19 +1,14 @@
 import React from 'react';
 import './App.css';
+import Page from './Page';
 
 function App() {
-  const isWeb3Installed: boolean = window.ethereum !== undefined;
+  // const isWeb3Installed: string = window.ethereum === undefined ? 'false' : 'true';
 
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Web 3 (Metamask) installed =
-          {isWeb3Installed}
-        </p>
-      </header>
+      <Page />
     </div>
   );
 }
-
 export default App;
