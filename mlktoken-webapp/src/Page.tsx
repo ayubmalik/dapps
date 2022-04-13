@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Web3 from 'web3';
 
-function Page() {
-  const web3 = new Web3(window.ethereum);
+interface PageProps {
+  web3: Web3
+}
+
+function Page(props: PageProps) {
+  const { web3 } = props;
   const [ethInfo, setEthInfo] = useState({ networkId: 0, name: '' });
   useEffect(() => {
     const all = Promise.all([
