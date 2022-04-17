@@ -43,7 +43,7 @@ public class RocksTxLog implements TxLog {
     }
 
     @Override
-    public List<Transaction> transactions() {
+    public List<Transaction> transactions(int i) {
         return null;
     }
 

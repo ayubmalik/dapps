@@ -9,5 +9,5 @@ public interface TxLog {
 
   void putLatestBlockNumber(Long blockNumber);
 
-  List<Transaction> transactions();
+  List<Transaction> transactions(int i);
 }

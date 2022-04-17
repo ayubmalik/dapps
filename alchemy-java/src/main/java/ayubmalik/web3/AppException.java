@@ -1,9 +1,11 @@
 package ayubmalik.web3;
 
-import org.rocksdb.RocksDBException;
-
 public class AppException extends RuntimeException {
-    public AppException(RocksDBException e) {
+    public AppException(Exception e) {
         super(e);
+    }
+
+    public AppException(String msg) {
+        super(msg);
     }
 }
