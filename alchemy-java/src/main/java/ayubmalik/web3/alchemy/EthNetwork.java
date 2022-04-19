@@ -2,7 +2,7 @@ package ayubmalik.web3.alchemy;
 
 public enum EthNetwork {
 
-    MAIN("main"),
+    MAINNET("mainnet"),
     ROPSTEN("ropsten");
 
     private final String id;
