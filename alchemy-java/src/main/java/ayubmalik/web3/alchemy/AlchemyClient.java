@@ -20,8 +20,8 @@ public class AlchemyClient {
     private final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
     private final Web3j web3j;
 
-    public AlchemyClient(EthNetwork network, String apiKey) {
-        var url = String.format("https://eth-%s.alchemyapi.io/v2/%s", network.id(), apiKey);
+    public AlchemyClient(EthNetwork ethNetwork, String apiKey) {
+        var url = String.format("https://eth-%s.alchemyapi.io/v2/%s", ethNetwork.id(), apiKey);
         web3j = Web3j.build(new HttpService(url));
     }
 
@@ -40,10 +40,9 @@ public class AlchemyClient {
         });
 
         return () -> {
-            log.info("shutting down 3");
+            log.info("shutting down web3j");
             subscription.cancel();
             web3j.shutdown();
         };
     }
 }
-

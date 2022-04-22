@@ -2,7 +2,6 @@ plugins {
     id 'java'
 }
 
-
 repositories {
     mavenCentral()
 }
@@ -11,7 +10,6 @@ dependencies {
     implementation 'org.web3j:core:4.8.7'
     implementation 'ch.qos.logback:logback-classic:1.2.11'
     implementation 'org.rocksdb:rocksdbjni:6.5.2'
-    implementation 'com.google.guava:guava:31.1-jre'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'

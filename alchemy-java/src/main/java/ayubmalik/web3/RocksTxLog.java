@@ -1,12 +1,12 @@
 package ayubmalik.web3;
 
-import com.google.common.primitives.Longs;
-import org.rocksdb.Options;
-import org.rocksdb.RocksDB;
-import org.rocksdb.RocksDBException;
+import org.rocksdb.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.web3j.protocol.core.methods.response.Transaction;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RocksTxLog implements TxLog {
@@ -15,44 +15,44 @@ public class RocksTxLog implements TxLog {
         RocksDB.loadLibrary();
     }
 
-    private final byte[] latestBlockNumber = "latestBlockNumber".getBytes();
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     private final RocksDB db;
 
-    RocksTxLog(Path path) {
+    public RocksTxLog(Path path) {
         db = openRocksDB(path);
     }
 
     @Override
-    public Long getLatestBlockNumber() {
-        try {
-            var blockNum = db.get(latestBlockNumber);
-            return Longs.fromByteArray(blockNum);
-        } catch (RocksDBException e) {
-            throw new AppException(e);
-        }
-    }
-
-    @Override
-    public void putLatestBlockNumber(Long blockNumber) {
-        try {
-            db.put(latestBlockNumber, Longs.toByteArray(blockNumber));
-        } catch (RocksDBException e) {
-            throw new AppException(e);
-        }
-    }
-
-    @Override
-    public List<Transaction> transactions(int i) {
+    public List<Transaction> transactions(Integer max) {
+        log.debug("get latest {} transactions", max);
         return null;
+    }
+
+    public void close() {
+        log.debug("closing db");
+        db.close();
     }
 
     private RocksDB openRocksDB(Path path) {
         try {
-            return RocksDB.open(new Options().setCreateIfMissing(true), path.toString());
+            log.debug("opening rocks db in {}", path);
+            var columnFamilyOptions = new ColumnFamilyOptions().optimizeUniversalStyleCompaction();
+            var columnFamilyDescriptors = List.of(
+                    new ColumnFamilyDescriptor(RocksDB.DEFAULT_COLUMN_FAMILY, columnFamilyOptions),
+                    new ColumnFamilyDescriptor("transactions".getBytes(), columnFamilyOptions)
+            );
+
+            return RocksDB.open(
+                    new DBOptions()
+                            .setCreateIfMissing(true)
+                            .setCreateMissingColumnFamilies(true),
+                    path.toString(),
+                    columnFamilyDescriptors,
+                    new ArrayList<>()
+            );
         } catch (RocksDBException e) {
             throw new AppException(e);
         }
     }
-
 }

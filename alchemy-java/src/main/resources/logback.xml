@@ -5,6 +5,8 @@
         </encoder>
     </appender>
 
+    <logger name="ayubmalik.web3.RocksTxLog" level="debug"/>
+
     <root level="info">
         <appender-ref ref="stdout"/>
     </root>
