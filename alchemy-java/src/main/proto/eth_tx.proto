@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package proto;
+option java_multiple_files = true;
+option java_package = "ayubmalik.web3.alchemy.proto";
+
+message EthTx {
+  bytes hash = 1;
+  bytes nonce = 2;
+  bytes from = 3;
+  bytes to = 4;
+  bytes gas = 5;
+  bytes gas_price = 6;
+  bytes max_fee_per_gas = 7;
+  bytes max_priority_fee_per_gas = 8;
+  bytes value = 9;
+  bytes data = 10;
+  bytes block_hash = 20;
+  bytes block_number = 21;
+  bytes tx_index = 22;
+  bytes public_key = 23;
+  EthSig sig = 24;
+  bytes tx_type = 25;
+  bytes creates = 26;
+  bytes raw = 27;
+}
+
+message EthSig {
+  bytes r = 1;
+  bytes s = 2;
+  uint64 v = 3;
+}

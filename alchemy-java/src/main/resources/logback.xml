@@ -5,7 +5,7 @@
         </encoder>
     </appender>
 
-    <logger name="ayubmalik.web3.RocksTxLog" level="debug"/>
+    <logger name="ayubmalik.web3.alchemy.RocksTxLog" level="debug"/>
 
     <root level="info">
         <appender-ref ref="stdout"/>

@@ -1,7 +1,5 @@
-package ayubmalik.web3;
+package ayubmalik.web3.alchemy;
 
-import ayubmalik.web3.alchemy.AlchemyClient;
-import ayubmalik.web3.alchemy.EthNetwork;
 import io.reactivex.functions.Cancellable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,8 +29,6 @@ public class AlchemyApp {
         addShutdownHook(txLog::close);
 
         var client = new AlchemyClient(ethNetwork, apiKey);
-        var latestBlockNumber = client.getLatestBlockNumber();
-        log.info("latestBlockNumber = {}", latestBlockNumber);
 
         var cancellable = client.getTransactions(tx -> log.info("received tx: {}", tx.getFrom()));
         addShutdownHook(wrap(cancellable));

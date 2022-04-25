@@ -5,7 +5,6 @@ import org.reactivestreams.Subscription;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.web3j.protocol.Web3j;
-import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.core.methods.response.Transaction;
 import org.web3j.protocol.http.HttpService;
 
@@ -25,10 +24,10 @@ public class AlchemyClient {
         web3j = Web3j.build(new HttpService(url));
     }
 
-    public Long getLatestBlockNumber() {
+
+    public Transaction getTransaction(String hash) {
         try {
-            var block = web3j.ethGetBlockByNumber(DefaultBlockParameterName.LATEST, false).send().getBlock();
-            return block.getNumber().longValue();
+            return web3j.ethGetTransactionByHash(hash).send().getTransaction().orElseThrow();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
