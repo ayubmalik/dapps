@@ -23,7 +23,7 @@ public class EthTxProtobufTest {
         return ByteString.copyFrom(s.getBytes(StandardCharsets.UTF_8));
     }
 
-    String toUtf8(ByteString bs) {
+    String utf8(ByteString bs) {
         if (bs.isEmpty()) {
             return null;
         }
@@ -65,25 +65,25 @@ public class EthTxProtobufTest {
 
         var tx2 = new Transaction(
                 hash,
-                toUtf8(ethTx.getNonce()),
-                toUtf8(ethTx.getBlockHash()),
-                toUtf8(ethTx.getBlockNumber()),
-                toUtf8(ethTx.getTxIndex()),
-                toUtf8(ethTx.getFrom()),
-                toUtf8(ethTx.getTo()),
-                toUtf8(ethTx.getValue()),
-                toUtf8(ethTx.getGas()),
-                toUtf8(ethTx.getGasPrice()),
-                toUtf8(ethTx.getData()),
-                toUtf8(ethTx.getCreates()),
-                toUtf8(ethTx.getPublicKey()),
-                toUtf8(ethTx.getRaw()),
-                toUtf8(ethTx.getSig().getR()),
-                toUtf8(ethTx.getSig().getS()),
+                utf8(ethTx.getNonce()),
+                utf8(ethTx.getBlockHash()),
+                utf8(ethTx.getBlockNumber()),
+                utf8(ethTx.getTxIndex()),
+                utf8(ethTx.getFrom()),
+                utf8(ethTx.getTo()),
+                utf8(ethTx.getValue()),
+                utf8(ethTx.getGas()),
+                utf8(ethTx.getGasPrice()),
+                utf8(ethTx.getData()),
+                utf8(ethTx.getCreates()),
+                utf8(ethTx.getPublicKey()),
+                utf8(ethTx.getRaw()),
+                utf8(ethTx.getSig().getR()),
+                utf8(ethTx.getSig().getS()),
                 ethTx.getSig().getV(),
-                toUtf8(ethTx.getTxType()),
-                toUtf8(ethTx.getMaxFeePerGas()),
-                toUtf8(ethTx.getMaxPriorityFeePerGas()),
+                utf8(ethTx.getTxType()),
+                utf8(ethTx.getMaxFeePerGas()),
+                utf8(ethTx.getMaxPriorityFeePerGas()),
                 List.of()
         );
 

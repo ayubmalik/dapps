@@ -30,7 +30,7 @@ public class AlchemyApp {
 
         var client = new AlchemyClient(ethNetwork, apiKey);
 
-        var cancellable = client.getTransactions(tx -> log.info("received tx: {}", tx.getFrom()));
+        var cancellable = client.getTransactions(tx -> txLog.put(tx));
         addShutdownHook(wrap(cancellable));
     }
 

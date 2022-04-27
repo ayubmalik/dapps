@@ -7,4 +7,6 @@ import java.util.List;
 public interface TxLog {
 
     List<Transaction> transactions(Integer max);
+
+    void put(Transaction tx);
 }
