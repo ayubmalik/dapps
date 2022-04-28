@@ -33,7 +33,7 @@ public class AlchemyClient {
         }
     }
 
-    public Cancellable getTransactions(Consumer<Transaction> consumer) {
+    public Cancellable getNewTransactions(Consumer<Transaction> consumer) {
         var subscription = (Subscription) web3j.transactionFlowable().subscribe(tx -> {
             consumer.accept(tx);
         });

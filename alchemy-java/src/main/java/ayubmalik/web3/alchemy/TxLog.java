@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface TxLog {
 
-    List<Transaction> transactions(Integer max);
+    List<Transaction> getTransactions(Integer max);
 
     void put(Transaction tx);
 }

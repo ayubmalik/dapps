@@ -18,7 +18,7 @@ class RocksTxLogTest {
     @Disabled("wip")
     void latestTransactions() {
         var txLog = new RocksTxLog(tempDir);
-        var transactions = txLog.transactions(20);
+        var transactions = txLog.getTransactions(20);
         assertThat(transactions).hasSize(20);
     }
 }
