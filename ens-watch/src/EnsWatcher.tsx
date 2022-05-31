@@ -4,6 +4,8 @@ import {
   Icon, LinkTo, Table, Typography,
 } from 'web3uikit';
 
+const PAGE_SIZE = 100;
+
 interface Item {
   domainName: string;
   expiryDate: string;
@@ -31,7 +33,7 @@ function EnsWatcher() {
         const item = {
           domainName: name, expiryDate, updatedDate, isConfirmed, link,
         };
-        setDataItems((data) => [item, ...data.slice(0, 10)]);
+        setDataItems((data) => [item, ...data.slice(0, PAGE_SIZE - 1)]);
       });
     }
     if (isInitialized) {
@@ -56,8 +58,10 @@ function EnsWatcher() {
           <span>Confirmed</span>,
           <span>Updated</span>,
         ]}
-        pageSize={50}
+        pageSize={PAGE_SIZE}
         noPagination
+        customNoDataText="...waiting for new ENS events"
+        isLoading={!isInitialized}
       />
     </div>
   );
