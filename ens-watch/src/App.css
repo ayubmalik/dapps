@@ -1,0 +1,18 @@
+.logo {
+  font-size: 3em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+nav {
+  background-color: #282c34;
+  height: 12vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+}
